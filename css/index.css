@@ -9,7 +9,7 @@
 }
 
 body{
-    background:url("/img/bg.png") center;
+    background:url("../img/bg.png") center;
     background-size: cover;
     min-height: 100vh;
     display: grid;
