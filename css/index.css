@@ -1,7 +1,7 @@
 :root{
     --text: #555;
     --btn: #111;
-    --bg: url("/img/bg.png");
+    --bg: url("../img/bg.png");
 }
 
 *{
