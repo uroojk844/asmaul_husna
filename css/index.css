@@ -1,5 +1,7 @@
 :root{
     --text: #555;
+    --btn: #111;
+    --bg: url("/img/bg.png");
 }
 
 *{
@@ -9,7 +11,7 @@
 }
 
 body{
-    background:url("../img/bg.png") center;
+    background: var(--bg) center;
     background-size: cover;
     min-height: 100vh;
     display: grid;
@@ -52,6 +54,11 @@ nav .title{
     font-size: 1.3em;
 }
 
+nav label{
+    cursor: pointer;
+    height: 100%;
+}
+
 .flex{
     display: flex;
     justify-content: space-between;
@@ -64,14 +71,12 @@ nav .title{
 }
 
 .btn:not(.title):hover{
-    background: #000;
+    opacity: 0.6;
 }
 
 #trans{
     accent-color: var(--text);
     border: 1px solid var(--text);
-    background-color: red;
-    caret-color: red;
 }
 
 .controls{
@@ -84,13 +89,13 @@ nav .title{
 
 .controls .btn{
     cursor: pointer;
-    background-color: #111;
+    background-color: var(--btn);
     border-radius: 16px;
     padding: 12px 24px;
 }
 
 .controls .btn:active{
-    background-color: #222;
+    opacity: 0.8;
 }
 
 .hide{

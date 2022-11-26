@@ -14,7 +14,8 @@
         <div class="btn title"><span style="font-size: 1.6em;">اللہ</span> Asmaul Husna</div>
         <div class="bar" onclick="$('.nav-btns').toggleClass('dflex')"><i class="fas fa-bars"></i></div>
         <div class="flex nav-btns">
-            <div class="btn"><input type="checkbox" id="trans"> <label for="trans">Transliteration</label></div>
+            <label for="mode" class="btn"><input type="checkbox" id="mode"> Theme</label>
+            <label for="trans" class="btn"><input type="checkbox" id="trans"> Transliteration</label>
             <div class="btn" onclick="download()"><i class="fas fa-fw fa-download"></i> Download</div>
             <div class="btn" id="downloadAll"><i class="fas fa-fw fa-download"></i> Download All</div>
         </div>
@@ -70,7 +71,7 @@
                         c = setInterval(() => {
                             show(i+=1);
                             if (i == 98) i=0;
-                        }, 1000);
+                        }, 4000);
                     }
 
                     $('.playBtn').toggleClass('fa-play fa-pause');
@@ -107,6 +108,26 @@
 
         $('#trans').change(function (e) {
             $('h2').toggle('hide');
+        });
+
+        $(document).ready(function () {
+            $('#mode').change(function (e) {
+                if(!localStorage.getItem('theme')){
+                    $(':root').css({
+                        '--text':'#111',
+                        '--btn':'wheat',
+                        '--bg': 'radial-gradient(circle, white, wheat)',
+                    });
+                    localStorage.setItem('theme', 'light');
+                }else{
+                    $(':root').css({
+                        '--text':'#555',
+                        '--btn':'#111',
+                        '--bg':'url("/img/bg.png")',
+                    });
+                    localStorage.removeItem('theme');
+                }
+            });
         });
     </script>
 </body>
