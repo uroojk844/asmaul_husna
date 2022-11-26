@@ -1,0 +1,118 @@
+:root{
+    --text: #555;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background:url("/img/bg.png") center;
+    background-size: cover;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+main{
+    color: var(--text);
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+h1{
+    font-size: 87px;
+}
+
+h2{
+    margin-bottom: 16px;
+}
+
+p{
+    font-size: 24px;
+}
+
+nav{
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    color: var(--text);
+    width: 100%;
+    user-select: none;
+    align-items: center;
+}
+
+nav .title{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.btn{
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.btn:not(.title):hover{
+    background: #000;
+}
+
+#trans{
+    accent-color: var(--text);
+    border: 1px solid var(--text);
+    background-color: red;
+    caret-color: red;
+}
+
+.controls{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    user-select: none;
+    width: 350px;
+}
+
+.controls .btn{
+    cursor: pointer;
+    background-color: #111;
+    border-radius: 16px;
+    padding: 12px 24px;
+}
+
+.controls .btn:active{
+    background-color: #222;
+}
+
+.hide{
+    display: none;
+}
+
+.bar{
+    padding: 8px 16px;
+    display: none;
+}
+
+
+@media screen and (max-width:600px) {
+    .bar{
+        display: block;
+    }
+   
+    .nav-btns{
+        display: none;
+    }
+    
+    .dflex{
+        display: flex;
+    }
+}

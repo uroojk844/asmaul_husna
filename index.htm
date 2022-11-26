@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <nav class="flex">
+        <div class="btn title"><span style="font-size: 1.6em;">اللہ</span> Asmaul Husna</div>
+        <div class="bar" onclick="$('.nav-btns').toggleClass('dflex')">bar</div>
+        <div class="flex nav-btns">
+            <div class="btn"><input type="checkbox" id="trans"> <label for="trans">Transliteration</label></div>
+            <div class="btn" onclick="download()"><i class="fas fa-fw fa-download"></i> Download</div>
+            <div class="btn" id="downloadAll"><i class="fas fa-fw fa-download"></i> Download All</div>
+        </div>
+    </nav>
+
+    <main>
+        <h1></h1>
+        <h2 class="hide"></h2>
+        <p></p>
+
+        <section class="controls">
+            <div class="btn prev"><i class="fas fa-fw fa-angle-left"></i> Prev</div>
+            <div class="btn play"><i class="playBtn fas fa-fw fa-play"></i> Play</div>
+            <div class="btn next">Next <i class="fas fa-fw fa-angle-right"></i></div>
+        </section>
+    </main>
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/html2canvas.min.js" type="text/javascript"></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="https://kit.fontawesome.com/a24ff9630f.js" crossorigin="anonymous"></script>
+    <script>
+        var i = 0;
+        var w = screen.width * window.devicePixelRatio;
+        var h = screen.height * window.devicePixelRatio;
+
+        $.ajax({
+            url: "js/data.json",
+            dataType: "text",
+            success: function (response) {
+                data = JSON.parse(response);
+                show(i);
+
+                $('#downloadAll').click(function (e) {
+                    i = 0;
+                    let x = setInterval(() => {
+                        show(i++, true);
+                        if (i == 98) clearInterval(x);
+                    }, 200);
+                });
+
+                $('.prev').click(function (e) { 
+                    show(i>0?i-=1:i=98);
+                });
+
+                var isPlaying = false;
+                var c;
+
+                $('.play').click(function (e) {
+                    if(isPlaying){
+                        clearInterval(c);
+                    }else{
+                        c = setInterval(() => {
+                            show(i+=1);
+                            if (i == 98) i=0;
+                        }, 1000);
+                    }
+
+                    $('.playBtn').toggleClass('fa-play fa-pause');
+                    isPlaying = !isPlaying;
+                });
+
+                $('.next').click(function (e) { 
+                    show(i<98?i+=1:i=0);
+                });
+    
+                function show(index, save) {
+                    $('h1').text(data[index].Name);
+                    $('h2').text(data[index].Transliteration);
+                    $('p').text(data[index].Meaning);
+                    if (save) download(index);
+                }
+            }
+        });
+
+        function download(index = i) {
+            $('nav, .controls').hide();
+            html2canvas(document.body, {
+                width: w,
+                height: h,
+                windowWidth: w,
+                windowHeight: h,
+            }).then(canvas => {
+                canvas.toBlob(function (blob) {
+                    saveAs(blob, `name ${index+1}.png`);
+                });
+            });
+            $('nav, .controls').show();
+        }
+
+        $('#trans').change(function (e) {
+            $('h2').toggle('hide');
+        });
+    </script>
+</body>
+
+</html>
