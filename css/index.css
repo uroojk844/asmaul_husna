@@ -74,7 +74,7 @@ nav label{
     opacity: 0.6;
 }
 
-#trans{
+input[type="checkbox"]{
     accent-color: var(--text);
     border: 1px solid var(--text);
 }
