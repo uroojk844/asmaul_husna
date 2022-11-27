@@ -6,3 +6,5 @@ Download the image of current name with background in your device resolution.
 
 # Donwload All btn
 Download all the image of names with  in select theme background in your device resolution.
+
+# Downloading these images will not require data.
