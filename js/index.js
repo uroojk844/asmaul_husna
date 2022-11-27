@@ -95,5 +95,6 @@ var i = 0;
                     '--btn': 'wheat',
                     '--bg': 'radial-gradient(circle, white, wheat)',
                 });
+                $('#mode').attr("checked",true);
             }
         });
